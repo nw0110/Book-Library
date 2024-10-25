@@ -1,0 +1,163 @@
+/* Using CSS resets from https://www.joshwcomeau.com/css/custom-css-reset/
+
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+    margin: 0;
+}
+
+body {
+    /* 3. Add accessible line-height */
+    line-height: 1.5;
+    /* 4. Improve text rendering */
+    -webkit-font-smoothing: antialiased;
+}
+
+/* 5. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+/* 6. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/* 7. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+/* 8. Improve line wrapping */
+p {
+    text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-wrap: balance;
+}
+
+/*
+    9. Create a root stacking context
+    */
+#root,
+#__next {
+    isolation: isolate;
+}
+
+/* End of CSS resets*/
+
+:root {
+    --header-bg: #454545;
+    --bright-text: #fcfcfc;
+    --light-border: #dbdbdb;
+    --book-read: #6dbd28;
+}
+
+body {
+    display: grid;
+    height: 100vh;
+    grid-template-rows: 12vh 1fr 5vh;
+    font-family: Roboto, "Times New Roman", sans-serif;
+}
+
+.library-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    padding: 32px;
+    gap: 2rem;
+    place-content: start;
+}
+
+.footer {
+    background-color: var(--header-bg);
+    color: var(--bright-text);
+    display: grid;
+    place-content: center;
+}
+
+.footer a {
+    color: var(--bright-text);
+    font-size: 0.8rem;
+}
+
+.header {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 20px;
+    background-color: var(--header-bg);
+    color: var(--bright-text);
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+}
+
+button.read, button.not-read {
+    border-radius: 12px;
+    padding: 5px 12px 5px 12px;
+    border: none;
+    margin-top: auto; 
+}
+
+button.not-read {
+    border: 0.2px solid var(--light-border);
+}
+
+button.read {
+    background-color: var(--book-read);
+    color: var(--bright-text);
+}
+
+button.delete{
+    position: absolute;
+    border-left: 1px solid var(--light-border);
+    border-bottom: 1px solid var(--light-border);
+    border-radius: 0px 0px 0px 5px;
+    right: 0px;
+    top: 0px;
+}
+
+.book-card {
+    position: relative;
+    border: 1px solid var(--light-border);
+    border-radius: 5px;
+    padding: 1.5rem;
+    box-shadow: 5px 5px 5px rgba(0,0,0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}

@@ -7,25 +7,60 @@ const myLibrary = [
     new Book("Dune", "Frank Herbert", 412, true)
 ];
 
-function Book(title, author, pages, read) {
+function Book(title, author, pages, isAlreadyRead) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.read = read;
+    this.isAlreadyRead = isAlreadyRead;
     this.info = function () {
-        return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read ? 'read already' : 'not read yet'}`;
+        return `${this.title} by ${this.author}, ${this.pages} pages, ${this.isAlreadyRead ? 'read already' : 'not read yet'}`;
     }
 }
 
-function addBookToLibrary(title, author, pages, read) {
-    const book = new Book(title, author, pages, read);
+function addBookToLibrary(title, author, pages, isAlreadyRead) {
+    const book = new Book(title, author, pages, isAlreadyRead);
     myLibrary.push(book);
 }
 
 function renderLibrary() {
     const libraryContainer = document.querySelector(".library-container");
+
     for(let i = 0; i < myLibrary.length; i++){
-        bookCard = document.createElement("div");
+
+        const bookCard = document.createElement("div");
         bookCard.classList.add("book-card");
+
+        const title = document.createElement("h2");
+        title.textContent = myLibrary[i].title;
+        title.classList.add("book-title");
+
+        const author = document.createElement("div");
+        author.textContent = myLibrary[i].author;
+        author.classList.add("book-author");
+
+        const pages = document.createElement("div");
+        pages.textContent = myLibrary[i].pages + " pages";
+        pages.classList.add("book-pages");
+
+        const toggleReadBtn = document.createElement("button");
+        toggleReadBtn.setAttribute('type', 'button');
+        toggleReadBtn.textContent = myLibrary[i].isAlreadyRead === true ? "Already read" : "Not read";
+        toggleReadBtn.classList.add(myLibrary[i].isAlreadyRead === true ? "read" : "not-read");
+
+        deleteBtn = document.createElement("button");
+        deleteBtn.setAttribute('type', 'button');
+        deleteBtn.classList.add('delete');
+        deleteBtn.textContent = "X";
+        
+
+        bookCard.appendChild(title);
+        bookCard.appendChild(author);
+        bookCard.appendChild(pages);
+        bookCard.appendChild(toggleReadBtn);
+        bookCard.appendChild(deleteBtn);
+
+        libraryContainer.appendChild(bookCard);
     }
 }
+
+renderLibrary();
