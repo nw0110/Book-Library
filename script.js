@@ -12,6 +12,7 @@ Book.prototype.toogleReadStatus = function() {
     this.isAlreadyRead = !this.isAlreadyRead;
 }
 
+/* Initialize library with some default books */
 const myLibrary = [
     new Book("The Hobbit", "J.R.R. Tolkien", 295, true),
     new Book("1984", "George Orwell", 328, true),
@@ -59,7 +60,6 @@ function renderLibrary() {
         deleteBtn.classList.add('delete');
         deleteBtn.textContent = "X";
         
-
         bookCard.appendChild(title);
         bookCard.appendChild(author);
         bookCard.appendChild(pages);
@@ -74,13 +74,15 @@ let libraryContainer = document.querySelector('.library-container');
 
 libraryContainer.addEventListener('click', (event) => {
     let target = event.target;
-    if(target.classList.contains("read") || target.classList.contains("not-read")){
+    const isToggleButton = target.classList.contains("read") || target.classList.contains("not-read");
+    const isDeleteBtn = target.classList.contains("delete");
+    if(isToggleButton){
         const indexOfClickedBookCard = target.getAttribute("data-index-value");
         const book = myLibrary[indexOfClickedBookCard];
         console.log(book);
         book.toogleReadStatus();
         renderLibrary();
-    } else if(target.classList.contains("delete")){
+    } else if(isDeleteBtn){
         const indexToDelete = target.getAttribute("data-index-value");
         myLibrary.splice(indexToDelete, 1);
         renderLibrary();

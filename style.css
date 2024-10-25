@@ -108,7 +108,7 @@ body {
 }
 
 .header {
-    padding: 1.5rem;
+    padding: 1.5rem 32px 1.5rem 32px;
     display: flex;
     justify-content: start;
     align-items: center;
