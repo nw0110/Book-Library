@@ -82,15 +82,15 @@ h6 {
 body {
     display: grid;
     height: 100vh;
-    grid-template-rows: 12vh 1fr 5vh;
+    grid-template-rows: clamp(78px, 12vh, 105px) 1fr 3.5vh;
     font-family: Roboto, "Times New Roman", sans-serif;
 }
 
 .library-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     padding: 32px;
-    gap: 2rem;
+    gap: clamp(0.8rem, 2vw, 24px);
     place-content: start;
 }
 
@@ -99,6 +99,7 @@ body {
     color: var(--bright-text);
     display: grid;
     place-content: center;
+    padding: 12px;
 }
 
 .footer a {
@@ -131,9 +132,6 @@ button.read, button.not-read {
     padding: 5px 12px 5px 12px;
     border: none;
     margin-top: auto; 
-}
-
-button.not-read {
     border: 0.2px solid var(--light-border);
 }
 
