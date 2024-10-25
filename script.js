@@ -124,8 +124,4 @@ modalSubmitBtn.addEventListener("click", function (e) {
     renderLibrary();
 });
 
-document.addEventListener("onkeydown", function(e){
-
-});
-
 renderLibrary();
