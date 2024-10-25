@@ -8,7 +8,7 @@ function Book(title, author, pages, isAlreadyRead) {
     }
 }
 
-Book.prototype.toogleReadStatus = function() {
+Book.prototype.toogleReadStatus = function () {
     this.isAlreadyRead = !this.isAlreadyRead;
 }
 
@@ -31,7 +31,7 @@ function renderLibrary() {
     const libraryContainer = document.querySelector(".library-container");
     libraryContainer.innerHTML = ""
 
-    for(let i = 0; i < myLibrary.length; i++){
+    for (let i = 0; i < myLibrary.length; i++) {
 
         const bookCard = document.createElement("div");
         bookCard.classList.add("book-card");
@@ -59,7 +59,7 @@ function renderLibrary() {
         deleteBtn.setAttribute('data-index-value', i);
         deleteBtn.classList.add('delete');
         deleteBtn.textContent = "X";
-        
+
         bookCard.appendChild(title);
         bookCard.appendChild(author);
         bookCard.appendChild(pages);
@@ -76,13 +76,13 @@ libraryContainer.addEventListener('click', (event) => {
     let target = event.target;
     const isToggleButton = target.classList.contains("read") || target.classList.contains("not-read");
     const isDeleteBtn = target.classList.contains("delete");
-    if(isToggleButton){
+    if (isToggleButton) {
         const indexOfClickedBookCard = target.getAttribute("data-index-value");
         const book = myLibrary[indexOfClickedBookCard];
         console.log(book);
         book.toogleReadStatus();
         renderLibrary();
-    } else if(isDeleteBtn){
+    } else if (isDeleteBtn) {
         const indexToDelete = target.getAttribute("data-index-value");
         myLibrary.splice(indexToDelete, 1);
         renderLibrary();
@@ -90,5 +90,42 @@ libraryContainer.addEventListener('click', (event) => {
 
     return;
 })
+
+const addBookBtn = document.querySelector("#add-book-btn");
+const addBookModal = document.querySelector("#add-book-modal");
+const modalCloseBtn = document.querySelector('.close-modal');
+const modalSubmitBtn = document.querySelector('#submit');
+const addBookForm = document.querySelector("form");
+
+addBookBtn.addEventListener("click", function (e) {
+    addBookForm.reset();
+    addBookModal.showModal();
+});
+
+modalCloseBtn.addEventListener("click", function (e) {
+    addBookForm.reset();
+    addBookModal.close();
+});
+
+modalSubmitBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    const formData = new FormData(addBookForm);
+
+    const title = formData.get('title');
+    const author = formData.get('author');
+    const pages = formData.get('pages');
+    const isAlreadyRead = formData.get('isAlreadyRead') ? true : false;
+
+    addBookToLibrary(title, author, pages, isAlreadyRead);
+
+    addBookModal.close();
+    addBookForm.reset();
+
+    renderLibrary();
+});
+
+document.addEventListener("onkeydown", function(e){
+
+});
 
 renderLibrary();

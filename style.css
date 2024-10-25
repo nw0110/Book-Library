@@ -72,11 +72,38 @@ h6 {
 
 /* End of CSS resets*/
 
+form input,
+form textarea,
+form select,
+form button {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+form input {
+    width: 100%;
+    padding: 5px 5px 5px 10px;
+    border-radius: 12px;
+    border: 1px solid var(--light-border);
+    outline: none;
+}
+
+form input:focus {
+    border: 1px solid var(--blue-accent);
+}
+
+form input:invalid {
+    border: 1px solid var(--error-accent);
+}
+
 :root {
     --header-bg: #454545;
     --bright-text: #fcfcfc;
     --light-border: #dbdbdb;
     --book-read: #6dbd28;
+    --blue-accent: rgb(71, 71, 255);
+    --error-accent: red;
 }
 
 body {
@@ -140,7 +167,25 @@ button.read {
     color: var(--bright-text);
 }
 
-button.delete{
+.header button {
+    margin: 0;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--header-bg);
+    font-size: 32px;
+    outline: none;
+}
+
+.add-button-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    fill: var(--bright-text)
+}
+
+button.delete {
     position: absolute;
     border-left: 1px solid var(--light-border);
     border-bottom: 1px solid var(--light-border);
@@ -158,4 +203,83 @@ button.delete{
     display: flex;
     flex-direction: column;
     gap: 12px;
+}
+
+#add-book-modal {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+
+    position: relative;
+
+    width: clamp(300px, 25vw, 400px);
+    height: clamp(500px, 25vw, 1000px);
+    border-radius: 15px;
+    border:1px solid var(--light-border);
+    box-shadow: 5px 5px 5px rgba(0,0,0, 0.1);
+    padding: 32px 32px 8px 32px;
+}
+
+#add-book-modal::backdrop {
+    background-color: rgba(0,0,0, 0.8);
+}
+
+#add-book-modal h2 {
+    text-align: center;
+}
+
+form {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    gap: min(1.5rem, 32px);
+}
+
+form p {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+form p label {
+    font-weight: bold;
+}
+
+form p:last-child {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+form p:last-child input {
+    flex: 0 0 1rem;
+    margin-left: auto;
+    accent-color: var(--blue-accent);
+}
+
+form button {
+    margin-top: auto;
+    width: 100%;
+    padding: 5px 12px 5px 12px;
+    border-radius: 12px;
+    background-color: var(--blue-accent);
+    color: var(--bright-text);
+}
+
+.close-modal {
+    position: absolute;
+    border: none;
+    background: none;
+    right: 5px;
+    top: 5px;
+    font-weight: bold;
+    color: var(--error-accent);
 }
